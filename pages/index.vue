@@ -1,6 +1,8 @@
 <template>
 	<main>
-		<header>Moments</header>
+		<header>
+			<img style="height: 1.25rem; margin-top: -0.25rem; vertical-align: middle" alt="CLShare logo" src="/clshare.png">
+		</header>
 		<h2>Groups</h2>
 		<ul>
 			<li>

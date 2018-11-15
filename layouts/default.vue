@@ -141,7 +141,7 @@ footer.navbar {
 			margin: 0.15rem auto;
 		}
 		&.nuxt-link-exact-active {
-			color: #2980b9;
+			color: #1d3176;
 			.nav-icon {
 				transform: scale(1.2);
 			}

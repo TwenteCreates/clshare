@@ -43,7 +43,7 @@
 				<b-field>
 					<b-input @input="setTyping" expanded v-model="text" size="is-medium" placeholder="Type your message..." icon="message" />
 					<p class="control">
-						<button style="background: #2980b9; color: #fff; border-radius: 0; border-right: 0" type="submit" class="button is-primary is-medium">
+						<button style="background: #1d3176; color: #fff; border-radius: 0; border-right: 0" type="submit" class="button is-primary is-medium">
 							Send<b-icon size="is-small" style="margin-left: 0.2rem" pack="fas" icon="arrow-right" />
 						</button>
 					</p>
@@ -69,15 +69,6 @@ export default {
 	created() {
 		if (!this.$store.state.user.loggedIn) this.$router.push("/login");
 		this.observeMessages();
-	},
-	mounted() {		
-		this.$axios.get("https://platform.oswaldlabs.com/secure/sentiments/You are a very beautiful person", {
-			headers: {
-				"x-api-key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwZXJtaXNzaW9ucyI6ImFsbCIsImlhdCI6MTU0MjMwNDkwNywiZXhwIjoxNTQyNTY0MTA3fQ.L2d78shR5jhMemYCU_WiiyBhCG9isQ7_PYg91dDiPDA"
-			}
-		}).then(response => {
-			console.log(response.data);
-		});
 	},
 	methods: {
 		botAction(action) {
@@ -214,7 +205,7 @@ footer {
 		&.mine {
 			justify-content: flex-end;
 			.bubble {
-				background-color: #2980b9;
+				background-color: #1d3176;
 				color: #fff;
 				border-bottom-right-radius: 0.5rem;
 			}
