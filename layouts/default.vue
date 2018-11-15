@@ -12,7 +12,7 @@
 					<div class="nav-caption">Moments</div>
 				</div>
 			</nuxt-link>
-			<nuxt-link to="/chat/bot?name=CLS+Bot" class="nav-element">
+			<nuxt-link to="/bot" class="nav-element">
 				<div class="nav-item">
 					<div class="nav-icon">
 						<b-icon pack="fas" icon="robot" />
