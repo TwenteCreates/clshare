@@ -136,12 +136,25 @@ export default {
 		},
 		observeMessages() {
 			firestore.collection("conversations").orderBy("createdAt").onSnapshot(querySnapshot => {
-				this.messages = [];
+				const messages = [];
 				for (let i = 0; i < querySnapshot.docs.length; i++) {
 					const doc = querySnapshot.docs[i];
 					const event = querySnapshot.docs[i].data();
+					if (["everyone", "london", "hr", "party"].includes(this.$route.params.id)) {
+						if (this.$route.params.id === event.to) messages.push({...event, id: doc.id});
+					} else {
+						if (
+							(this.$store.state.user.profile.uid === event.from && this.$route.params.id === event.to) ||
+							(this.$store.state.user.profile.uid === event.to && this.$route.params.id === event.from)
+						) {
+							messages.push({...event, id: doc.id});
+						}
+					}
+				}
+				for (let i = 0; i < messages.length; i++) {
+					const event = messages[i];
 					if (i > 0) {
-						if (!event.from_bot && event.from === querySnapshot.docs[i - 1].data().from) {
+						if (!event.from_bot && event.from === messages[i - 1].from) {
 							event.prevSame = true;
 						} else {
 							event.prevSame = false;
@@ -149,8 +162,8 @@ export default {
 					} else {
 						event.prevSame = false;
 					}
-					if (i < querySnapshot.docs.length - 1) {
-						if (event.from === querySnapshot.docs[i + 1].data().from) {
+					if (i < messages.length - 1) {
+						if (event.from === messages[i + 1].from) {
 							event.nextSame = true;
 						} else {
 							event.nextSame = false;
@@ -158,17 +171,8 @@ export default {
 					} else {
 						event.nextSame = false;
 					}
-					if (["everyone", "london", "hr", "party"].includes(this.$route.params.id)) {
-						if (this.$route.params.id === event.to) this.messages.push({...event, id: doc.id});
-					} else {
-						if (
-							(this.$store.state.user.profile.uid === event.from && this.$route.params.id === event.to) ||
-							(this.$store.state.user.profile.uid === event.to && this.$route.params.id === event.from)
-						) {
-							this.messages.push({...event, id: doc.id});
-						}
-					}
 				}
+				this.messages = messages;
 				setTimeout(() => {
 					window.scrollTo(0, document.body.scrollHeight);
 				}, 10);
