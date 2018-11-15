@@ -22,9 +22,9 @@
 				</router-link>
 			</li>
 		</ul>
-		<h2>Users</h2>
+		<h2>Coworkers</h2>
 		<ul>
-			<li v-for="(item, index) in users" :key="'u_' + index">
+			<li v-if="item.id !== $store.state.user.profile.uid" v-for="(item, index) in users" :key="'u_' + index">
 				<router-link :to="`/chat/${item.id}`">
 					<img alt="Image" :src="item.photoUrl" class="small-dp">
 					{{item.name}}

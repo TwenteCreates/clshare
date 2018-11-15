@@ -59,6 +59,7 @@ export default {
 				updatedAt: new Date(),
 				from: this.$store.state.user.profile.uid,
 				to: this.$route.params.id,
+				concerned_users: [this.$store.state.user.profile.uid, this.$route.params.id],
 				text: this.text
 			});
 			this.text = "";
