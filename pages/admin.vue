@@ -1,8 +1,8 @@
 <template>
     <main>
         <div class="container is-fluid">
+            <sentiment-analysis-statistics />
             <engagement-answers-statistics />
-            <sentiment-anlysis-statistics />
             <users-table />
         </div>
     </main>
@@ -16,6 +16,7 @@ import firestore from '@/services/firestore';
 
 import EngagementAnswersStatistics from '@/components/admin/EngagementAnswersStatistics';
 import UsersTable from '@/components/admin/UsersTable';
+import SentimentAnalysisStatistics from '@/components/admin/SentimentAnalysisStatistics';
 
 export default {
     components: {
@@ -23,7 +24,6 @@ export default {
         UsersTable,
         SentimentAnalysisStatistics,
     },
-    methods() {
-    }
+    methods: {}
 };
 </script>
