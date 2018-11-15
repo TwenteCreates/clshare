@@ -1,9 +1,11 @@
 <template>
 	<main>
 		<header>Moments</header>
-		<ul>
-			<li>Messages go here...</li>
-		</ul>
+		<section class="messages">
+			<article v-for="(item, index) in messages" :key="'m_' + index" :class="item.from === $store.state.user.profile.uid ? 'mine' : 'not_mine'">
+				<div class="bubble">{{item.text}}</div>
+			</article>
+		</section>
 		<footer>
 			<form @submit.prevent="send">
 				<b-field>
@@ -18,17 +20,38 @@
 </template>
 
 <script>
+import firestore from "../services/firestore";
 import Push from "push.js";
 export default {
 	data() {
 		return {
-			text: ""
+			text: "",
+			messages: []
 		}
+	},
+	created() {
+		if (!this.$store.state.user.loggedIn) this.$router.push("/login");
+		this.observeMessages();
 	},
 	methods: {
 		send() {
+			firestore.collection("conversations").add({
+				createdAt: new Date(),
+				updatedAt: new Date(),
+				from: this.$store.state.user.profile.uid,
+				to: "anand",
+				text: this.text
+			});
 			this.text = "";
-			Push.create("Sent!");
+		},
+		observeMessages() {
+			firestore.collection("conversations").onSnapshot(querySnapshot => {
+				this.messages = [];
+				querySnapshot.forEach(doc => {
+					const event = doc.data();
+					this.messages.push({...event, id: doc.id});
+				});
+			});
 		}
 	}
 }
@@ -42,5 +65,30 @@ footer {
 	bottom: 4rem;
 	position: fixed;
 	z-index: 6;
+}
+.messages {
+	padding: 0 1rem;
+	article {
+		display: flex;
+		&.mine {
+			justify-content: flex-end;
+			.bubble {
+				background-color: #2980b9;
+				color: #fff;
+				border-bottom-right-radius: 0.5rem;
+			} 
+		}
+		&.not_mine .bubble {
+			border-bottom-left-radius: 0.5rem;
+		}
+	}
+}
+.bubble {
+	background-color: #fff;
+	display: inline-block;
+	padding: 0.75rem 1.25rem;
+	box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+	border-radius: 1.5rem;
+	margin-bottom: 1rem;
 }
 </style>
