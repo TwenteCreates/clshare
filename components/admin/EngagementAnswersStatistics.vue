@@ -15,8 +15,9 @@
         </div>
         <div class="tile is-parent">
             <div class="tile is-child box">
-                <p class="title">Average mood</p>
-                <button @click="addRandomMood">Add random mood</button>
+                <p class="title">Average employees mood
+                    <button class="button add-button" @click="addRandomMood"><b-icon pack="fas" icon="plus"/></button>
+                </p>
                 <engagement-answers-count-chart :answersCountChartData="getAnswersCountData"/>
             </div>
         </div>
@@ -26,6 +27,9 @@
 <style lang="scss" scoped>
     .mood-averages {
         margin-top: 30px;
+    }
+    .add-button {
+        float: right;
     }
 </style>
 

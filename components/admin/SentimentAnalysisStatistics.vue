@@ -2,13 +2,21 @@
     <div class="tile is-ancestor">
         <div class="tile is-parent">
             <div class="tile is-child box">
-                <p class="title">Average sentiment score in conversations</p>
-                <button @click="refreshSentimentAnalysis">Refresh sentiment analysis</button>
+                <p class="title">Average sentiment score in conversations
+                    <button class="button refresh-button" @click="refreshSentimentAnalysis"><b-icon pack="fas" icon="sync"/></button>
+                </p>
                 <sentiment-analyses-chart :sentimentAnalysesChartData="getSentimentAnalysesChartData" />
             </div>
         </div>
     </div>
 </template>
+
+<style lang="scss" scoped>
+.refresh-button {
+    float:right;
+}
+</style>
+
 
 <script>
 import firestore from '@/services/firestore';
