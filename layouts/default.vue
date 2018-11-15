@@ -71,6 +71,8 @@ export default {
                     email: userProfile.email,
                     photoUrl: userProfile.photoURL
                 });
+            } else {
+                if (this.$route.path !== "/login") this.$router.push("/login");
             }
         });
 
