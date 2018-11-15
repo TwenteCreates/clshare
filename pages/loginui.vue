@@ -71,4 +71,12 @@ main {
 		border: 0;
 	}
 }
+
+@media only screen and (min-width: 768px) {
+    main {
+        img {
+            width: 50%;
+        }
+    }
+}
 </style>
