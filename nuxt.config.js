@@ -64,11 +64,11 @@ module.exports = {
   },
   env: {
       firebaseConfig: {
-          apiKey: "REPLACE_API_KEY",
-          authDomain: "REPLACE_DOMAIN",
+          apiKey: "AIzaSyBKw4Or-zv1OC-K60Ym6jQmMq9vB6Tb1N0",
+          authDomain: "cls-innovation-app.firebaseapp.com",
           databaseURL: "https://cls-innovation-app.firebaseio.com",
           projectId: "cls-innovation-app",
-          storageBucket: "",
+          storageBucket: "cls-innovation-app.appspot.com",
           messagingSenderId: "425235510420"
       },
   }

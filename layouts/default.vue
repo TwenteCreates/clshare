@@ -58,15 +58,8 @@ export default {
 
         firebase.auth().onAuthStateChanged(userProfile => {
             if (userProfile) {
-                this.$store.commit(LOGIN_SUCCESS, userProfile);
-                // TODO: Add redirect;
-                // var redirect = router.currentRoute.query.redirect;
-                // if (redirect) {
-                //   router.replace(redirect);
-                // }
-                // else {
-                //   router.replace({ name: 'randomPage' });
-                // }
+				this.$store.commit(LOGIN_SUCCESS, userProfile);
+				if (this.$route.path === "/login") this.$router.push("/");
             }
         });
 
