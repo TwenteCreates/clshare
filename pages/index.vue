@@ -35,6 +35,7 @@ export default {
 	},
 	methods: {
 		send() {
+			if (!this.text || !this.text.trim()) return;
 			firestore.collection("conversations").add({
 				createdAt: new Date(),
 				updatedAt: new Date(),
