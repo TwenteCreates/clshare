@@ -91,6 +91,10 @@ export default {
 
 <style lang="scss">
 @import url("https://use.fontawesome.com/releases/v5.5.0/css/all.css");
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700");
+body {
+	font-family: "Lato";
+}
 html, body {
 	background-color: #dfe6e9;
 }

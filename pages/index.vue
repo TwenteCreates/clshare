@@ -71,7 +71,7 @@ h2 {
 	font-size: 95%;
 	text-transform: uppercase;
 	margin-bottom: 1rem;
-	font-weight: 500;
+	font-weight: 700;
 	padding-left: 1rem;
 }
 ul {
@@ -92,6 +92,7 @@ li a {
 	height: 4rem;
 	padding: 0.5rem;
 	border-radius: 100%;
+	margin-left: 0.5rem;
 	vertical-align: middle;
 }
 .groups {
@@ -118,6 +119,7 @@ li a {
 		margin-bottom: 1rem;
 		img {
 			border-radius: 0;
+			margin-left: 0;
 			display: block;
 			width: 100%;
 			padding: 0;

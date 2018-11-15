@@ -123,16 +123,16 @@ export default {
 					this.say("How are you feeling today?", ["Great, thanks!", "Okay, I guess", "Not so good today"]);
 					break;
 				case 2:
-					this.say(["Okay, do you have any feedback for CLS?", "Don't worry, it's completely anonymous. 🙂"], [{
+					this.say(["Alright, could we do anything to make your day better?", "Don't worry, it's completely anonymous. 🙂"], [{
 						type: "input",
-						placeholder: "Enter your full name",
-						modal: "name"
+						placeholder: "Enter any feedback",
+						modal: "feedback"
 					}]);
 					break;
 				case 3:
-					this.say(["That's it for now!", "Thanks for talking to me", "Let's check out your settings now!"], [{
-						text: "Let's go!",
-						redirect: "/settings?startTour=true"
+					this.say(["Thanks for the input, have a nice day!"], [{
+						text: "Go to your Moments",
+						redirect: "/"
 					}]);
 					break;
 			}
