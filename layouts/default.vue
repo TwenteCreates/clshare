@@ -20,14 +20,14 @@
 					<div class="nav-caption">Explore</div>
 				</div>
 			</nuxt-link>
-			<button type="button" class="nav-element" @click.prevent="a11y">
+			<a class="nav-element" @click.prevent="a11y">
 				<div class="nav-item">
 					<div class="nav-icon">
 						<b-icon pack="fas" icon="universal-access" />
 					</div>
 					<div class="nav-caption">Access</div>
 				</div>
-			</button>
+			</a>
 			<nuxt-link to="/profile" class="nav-element">
 				<div class="nav-item">
 					<div class="nav-icon">
@@ -63,39 +63,52 @@ export default {
 
 <style lang="scss">
 @import url("https://use.fontawesome.com/releases/v5.5.0/css/all.css");
-.body {
+html, body {
 	background-color: #dfe6e9;
-	min-height: 100vh;
-	display: flex;
 }
-.content {
-	width: 100%;
-	overflow-y: auto;
-	overflow-x: hidden;
-}
-footer.navbar {
+header, footer.navbar {
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.025);
-	position: fixed;
 	background-color: #fff;
 	z-index: 5;
-	bottom: 0;
+	position: fixed;
 	left: 0; right: 0;
+}
+header {
+	font-size: 125%;
+	top: 0;
+	height: 4rem;
+	line-height: 4rem;
+	text-align: center;
+}
+main {
+	padding-top: 5rem;
+}
+footer.navbar {
+	bottom: 0;
 	justify-content: space-between;
 	align-items: stretch;
 	display: flex;
 	.nav-element {
 		color: inherit;
 		appearance: none;
+		height: 4rem;
 		background: transparent;
 		border: none;
 		font: inherit;
 		display: flex;
+		flex-direction: column;
 		border-radius: 0;
-		padding: 0.5rem 0;
+		padding: 0;
 		margin: 0;
 		width: 100%;
 		justify-content: center;
 		text-align: center;
+		.nav-item {
+			align-self: center;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+		}
 		.nav-caption {
 			font-size: 80%;
 		}
