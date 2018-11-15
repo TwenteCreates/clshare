@@ -8,7 +8,9 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "deploy": "cd dist && surge --domain cls-innovation.surge.sh",
+    "up": "yarn generate && yarn deploy"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.0.0",
