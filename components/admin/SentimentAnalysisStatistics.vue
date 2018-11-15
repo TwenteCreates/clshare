@@ -1,23 +1,40 @@
 <template>
     <div>
         <button @click="refreshSentimentAnalysis">Refresh sentiment analysis</button>
+        <sentiment-analyses-chart :sentimentAnalysesChartData="getSentimentAnalysesChartData" />
     </div>
 </template>
 
 <style lang="scss" scoped>
-    .mood-averages {
-        margin-top: 30px;
-    }
 </style>
 
 
 <script>
 import firestore from '@/services/firestore';
 
+import SentimentAnalysesChart from '@/components/admin/SentimentAnalysesChart';
+
 export default {
+    components: {
+        SentimentAnalysesChart,
+    },
     data () {
         return {
-            answers: [],
+            analyses: [],
+        }
+    },
+    computed: {
+        getSentimentAnalysesChartData() {
+            return {
+                labels: this.analyses.map(analysis => analysis.createdAt.toDate().toLocaleDateString()),
+                datasets: [
+                    {
+                        label: 'Average sentiment score in conversation',
+                        backgroundColor: '#f87979',
+                        data: this.analyses.map(analysis => analysis.sentimentScore),
+                    }
+                ]
+            }
         }
     },
     methods: {
@@ -38,13 +55,13 @@ export default {
 
                             // Add sentiment score to the user
                             firestore.collection('users').doc(userDoc.id).set({
-                                sentimentScore: score
+                                sentimentScore: score.toFixed(2)
                             }, { merge: true });
 
                             // Save the analysis score
                             firestore.collection('sentimentAnalyses').add({
                                 createdAt: new Date(),
-                                sentimentScore: score
+                                sentimentScore: score.toFixed(2)
                             });
                         })
                     });
@@ -57,7 +74,20 @@ export default {
                     "x-api-key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwZXJtaXNzaW9ucyI6ImFsbCIsImlhdCI6MTU0MjMwNDkwNywiZXhwIjoxNTQyNTY0MTA3fQ.L2d78shR5jhMemYCU_WiiyBhCG9isQ7_PYg91dDiPDA"
                 }
             });
-        }
+        },
+        observeSentimentAnalyses() {
+            const sentimentAnalysesCollection = firestore.collection('sentimentAnalyses');
+            sentimentAnalysesCollection.onSnapshot(saQuery => {
+                this.analyses = [];
+                saQuery.forEach((analysisDoc) => {
+                    const analysis = analysisDoc.data();
+                    this.analyses.push({...analysis, id: analysisDoc.id })
+                });
+            });
+        },
+    },
+    mounted() {
+        this.observeSentimentAnalyses();
     }
 };
 </script>
