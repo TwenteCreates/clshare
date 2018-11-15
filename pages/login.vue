@@ -1,12 +1,17 @@
 <template>
     <main>
         <b-field label="Email">
-            <b-input></b-input>
+            <b-input v-model="email"></b-input>
         </b-field>
 
         <b-field label="Password">
-            <b-input type="password" password-reveal></b-input>
+            <b-input type="password" password-reveal v-model="password"></b-input>
         </b-field>
+
+        <button class="button" @click="loginWithCredentials">
+            <b-icon icon="key"></b-icon>
+            <span>Login with credentials</span>
+        </button>
 
         <button class="button" @click="loginWithGoogle">
             <b-icon icon="google"></b-icon>

@@ -59,7 +59,17 @@ module.exports = {
     ** You can extend webpack config here
     */
     extend(config, ctx) {
-      
+
     }
+  },
+  env: {
+      firebaseConfig: {
+          apiKey: "REPLACE_API_KEY",
+          authDomain: "REPLACE_DOMAIN",
+          databaseURL: "https://cls-innovation-app.firebaseio.com",
+          projectId: "cls-innovation-app",
+          storageBucket: "",
+          messagingSenderId: "425235510420"
+      },
   }
 }

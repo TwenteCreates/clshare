@@ -41,7 +41,11 @@
 </template>
 
 <script>
+import firebase from "@/services/firebase";
 import loadJs from "loadjs";
+
+import { LOGIN_SUCCESS } from '@/store/user';
+
 export default {
 	mounted() {
 		window.a11ySettings = window.a11ySettings || {};
@@ -50,7 +54,22 @@ export default {
 			setTimeout(() => {
 				window.agastya.api();
 			}, 1000);
-		});
+        });
+
+        firebase.auth().onAuthStateChanged(userProfile => {
+            if (userProfile) {
+                this.$store.commit(LOGIN_SUCCESS, userProfile);
+                // TODO: Add redirect;
+                // var redirect = router.currentRoute.query.redirect;
+                // if (redirect) {
+                //   router.replace(redirect);
+                // }
+                // else {
+                //   router.replace({ name: 'randomPage' });
+                // }
+            }
+        });
+
 	},
 	methods: {
 		a11y() {
