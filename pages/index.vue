@@ -45,7 +45,7 @@ export default {
 			this.text = "";
 		},
 		observeMessages() {
-			firestore.collection("conversations").onSnapshot(querySnapshot => {
+			firestore.collection("conversations").orderBy("createdAt").onSnapshot(querySnapshot => {
 				this.messages = [];
 				querySnapshot.forEach(doc => {
 					const event = doc.data();
@@ -76,7 +76,7 @@ footer {
 				background-color: #2980b9;
 				color: #fff;
 				border-bottom-right-radius: 0.5rem;
-			} 
+			}
 		}
 		&.not_mine .bubble {
 			border-bottom-left-radius: 0.5rem;
