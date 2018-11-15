@@ -65,8 +65,8 @@ export default {
                 firestore.collection('users').doc(userProfile.uid).set({
                     createdAt: new Date(),
                     updatedAt: new Date(),
-                    creationTime: metadata.creationTime,
-                    lastSignInTime: metadata.lastSignInTime,
+                    creationTime: userProfile.metadata.creationTime,
+                    lastSignInTime: userProfile.metadata.lastSignInTime,
                     name: userProfile.displayName,
                     email: userProfile.email,
                     photoUrl: userProfile.photoURL
