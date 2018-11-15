@@ -1,7 +1,9 @@
 <template>
     <main>
-        <engagement-answers-statistics />
-        <users-table />
+        <div class="container is-fluid">
+            <engagement-answers-statistics />
+            <users-table />
+        </div>
     </main>
 </template>
 
