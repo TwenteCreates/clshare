@@ -13,10 +13,11 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.0.0",
     "cross-env": "^5.2.0",
-    "loadjs": "^3.5.4",
     "firebase": "^5.5.8",
+    "loadjs": "^3.5.4",
     "nuxt": "^2.0.0",
-    "nuxt-buefy": "^0.2.1"
+    "nuxt-buefy": "^0.2.1",
+    "push.js": "^1.0.9"
   },
   "devDependencies": {
     "eslint-config-prettier": "^3.1.0",

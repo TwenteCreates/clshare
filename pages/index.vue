@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import Push from "push.js";
 export default {
 	data() {
 		return {
@@ -27,6 +28,7 @@ export default {
 	methods: {
 		send() {
 			this.text = "";
+			Push.create("Sent!");
 		}
 	}
 }
