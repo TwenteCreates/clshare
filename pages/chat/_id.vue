@@ -32,7 +32,7 @@
 			</article>
 			<article v-else style="text-align: center; margin: 0.5rem 0 1.5rem 0">
 				<div v-if="item.text === 'bot__meta:START'" style="width: 100%">CLS Bot has entered this chat</div>
-				<div v-else style="width: 100%">CLS Bot has entered this chat</div>
+				<div v-else style="width: 100%">CLS Bot has left this chat</div>
 			</article>
 			<div v-if="false && typing !== 'nobody' && typing !== $store.state.user.profile.uid">
 				{{getUser(typing).name}} is typing...
@@ -77,7 +77,7 @@ export default {
 				case "phone":
 					this.botSays("bot__meta:START");
 					this.botSays("Great, I'm looking for times that work for both of you.", 2);
-					this.botSays("For both of you, it looks like Tuesday " + Math.floor(Math.random() * 5) + 1 + ":00 pm works.", 2000);
+					this.botSays("For both of you, it looks like Tuesday " + (Math.floor(Math.random() * 5) + 1) + ":00 pm works.", 2000);
 					this.botSays("I've added an event on both of your calendars and shared each others' phone numbers.", 5000);
 					this.botSays("Let me know if there's anything else I can do!", 7000);
 					this.botSays("bot__meta:STOP", 7001);
@@ -85,7 +85,7 @@ export default {
 				case "calendar":
 					this.botSays("bot__meta:START");
 					this.botSays("Great, I'm looking for times that work for both of you.", 2);
-					this.botSays("For both of you, it looks like Friday " + Math.floor(Math.random() * 5) + 1 + ":00 pm works.", 2000);
+					this.botSays("For both of you, it looks like Friday " + (Math.floor(Math.random() * 5) + 1) + ":00 pm works.", 2000);
 					this.botSays("I've added an event on both of your calendars.", 5000);
 					this.botSays("Let me know if there's anything else I can do!", 7000);
 					this.botSays("bot__meta:STOP", 7001);
