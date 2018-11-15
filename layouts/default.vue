@@ -42,6 +42,8 @@
 
 <script>
 import firebase from "@/services/firebase";
+import firestore from "@/services/firestore";
+
 import loadJs from "loadjs";
 
 import { LOGIN_SUCCESS } from '@/store/user';
@@ -59,7 +61,16 @@ export default {
         firebase.auth().onAuthStateChanged(userProfile => {
             if (userProfile) {
 				this.$store.commit(LOGIN_SUCCESS, userProfile);
-				if (this.$route.path === "/login") this.$router.push("/");
+                if (this.$route.path === "/login") this.$router.push("/");
+                firestore.collection('users').doc(userProfile.uid).set({
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                    creationTime: userProfile.metadata.creationTime,
+                    lastSignInTime: userProfile.metadata.lastSignInTime,
+                    name: userProfile.displayName,
+                    email: userProfile.email,
+                    photoUrl: userProfile.photoURL
+                });
             }
         });
 
