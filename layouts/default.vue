@@ -92,7 +92,7 @@ html, body {
 	background-color: #dfe6e9;
 }
 header, footer.navbar {
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.025);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	background-color: #fff;
 	z-index: 5;
 	position: fixed;
