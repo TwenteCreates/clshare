@@ -20,10 +20,10 @@
     },
     data () {
         return {
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false
-                }
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
         }
     },
     props: {
