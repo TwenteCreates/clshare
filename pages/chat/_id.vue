@@ -3,10 +3,10 @@
 		<header>Moments</header>
 		<section class="messages">
 			<article v-for="(item, index) in messages" :key="'m_' + index" :class="item.from === $store.state.user.profile.uid ? 'mine' : 'not_mine'">
-				<div class="bubble">{{item.text}}</div>
+				<div class="bubble">{{getUser(item.from).name}}: {{item.text}}</div>
 			</article>
 			<div v-if="typing !== 'nobody' && typing !== $store.state.user.profile.uid">
-				{{typing}} is typing...
+				{{getUser(typing).name}} is typing...
 			</div>
 		</section>
 		<footer>
@@ -29,6 +29,7 @@ export default {
 	data() {
 		return {
 			text: "",
+			users: [],
 			messages: [],
 			typing: "nobody"
 		}
@@ -38,6 +39,13 @@ export default {
 		this.observeMessages();
 	},
 	methods: {
+		getUser(id) {
+			let result = {};
+			this.users.forEach(user => {
+				if (user.id === id) result = user;
+			});
+			return result;
+		},
 		setTyping() {
 			firestore.collection("metadata").doc("metadata").set({
 				typing: this.$store.state.user.profile.uid
@@ -64,6 +72,7 @@ export default {
 				this.messages = [];
 				querySnapshot.forEach(doc => {
 					const event = doc.data();
+					if (event.to === "everyone") event.to = this.$store.state.user.profile.uid;
 					this.messages.push({...event, id: doc.id});
 				});
 				setTimeout(() => {
@@ -72,6 +81,13 @@ export default {
 			});
 			firestore.collection("metadata").onSnapshot(querySnapshot => {
 				this.typing = querySnapshot.docs[0].data().typing;
+			});
+			firestore.collection("users").onSnapshot(querySnapshot => {
+				this.users = [];
+				querySnapshot.forEach(doc => {
+					const event = doc.data();
+					this.users.push({...event, id: doc.id});
+				});
 			});
 		}
 	}
