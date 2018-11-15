@@ -65,7 +65,6 @@ const actions = {
                     break;
                 case GOOGLE_LOGIN_PROVIDER:
                     authResult = await firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider());
-                    console.log(authResult);
                     break;
                 default:
             }
