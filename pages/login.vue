@@ -74,23 +74,18 @@ export default {
   },
   methods: {
     loginWithCredentials(email, password) {
-      if (this.$store.state.user.loggedIn) this.$router.push("/");
-      this.$store.dispatch(LOGIN, { provider: CREDENTIALS_LOGIN_PROVIDER, credentials: { email, password }});
+        if (this.$store.state.user.loggedIn) this.$router.push("/");
+        this.$store.dispatch(LOGIN, { provider: CREDENTIALS_LOGIN_PROVIDER, credentials: { email, password }});
     },
     loginWithGoogle() {
         if (this.$store.state.user.loggedIn) this.$router.push("/");
-       this.$store.dispatch(LOGIN, { provider: GOOGLE_LOGIN_PROVIDER });
+        this.$store.dispatch(LOGIN, { provider: GOOGLE_LOGIN_PROVIDER });
     },
     loginWithMicrosoft() {
-        if (this.$store.state.user.loggedIn) this.$router.push("/");
-       this.$store.dispatch(LOGIN, { provider: CREDENTIALS_LOGIN_PROVIDER, credentials: { email, password }});
+        this.loginWithGoogle();
     },
     loginWithLinkedin() {
-        if (this.$store.state.user.loggedIn) this.$router.push("/");
-       this.$store.dispatch(LOGIN, { provider: CREDENTIALS_LOGIN_PROVIDER, credentials: { email, password }});
-    },
-    register(email, password) {
-      this.$store.dispatch(LOGIN, { provider: CREDENTIALS_LOGIN_PROVIDER, credentials: { email, password }});
+        this.loginWithGoogle();
     }
   }
 };
