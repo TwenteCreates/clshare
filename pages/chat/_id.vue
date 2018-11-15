@@ -6,7 +6,7 @@
 				<img alt="Image" :src="getUser(item.from).photoUrl" class="small-dp">
 				<div class="bubble">{{item.text}}</div>
 			</article>
-			<div v-if="typing !== 'nobody' && typing !== $store.state.user.profile.uid">
+			<div v-if="false && typing !== 'nobody' && typing !== $store.state.user.profile.uid">
 				{{getUser(typing).name}} is typing...
 			</div>
 		</section>
@@ -75,7 +75,9 @@ export default {
 				for (let i = 0; i < querySnapshot.docs.length; i++) {
 					const doc = querySnapshot.docs[i];
 					const event = querySnapshot.docs[i].data();
-					if (event.to === "everyone") event.to = this.$store.state.user.profile.uid;
+					if (["everyone", "london", "hr", "party"].includes(this.$route.params.id)) {
+						event.to = this.$store.state.user.profile.uid
+					}
 					if (i > 0) {
 						if (event.from === querySnapshot.docs[i - 1].data().from) {
 							event.prevSame = true;
@@ -94,7 +96,13 @@ export default {
 					} else {
 						event.nextSame = false;
 					}
-					this.messages.push({...event, id: doc.id});
+					if (this.from === this.$store.state.user.profile.uid || this.to === this.$store.state.user.profile.uid) {
+						this.messages.push({...event, id: doc.id});
+					} else {
+						if (["everyone", "london", "hr", "party"].includes(this.$route.params.id)) {
+							this.messages.push({...event, id: doc.id});
+						}
+					}
 				}
 				setTimeout(() => {
 					window.scrollTo(0, document.body.scrollHeight);
