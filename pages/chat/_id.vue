@@ -2,7 +2,7 @@
 	<main>
 		<header>Moments</header>
 		<section class="messages">
-			<article v-for="(item, index) in messages" :key="'m_' + index" :class="item.from === $store.state.user.profile.uid ? 'mine' : 'not_mine'">
+			<article v-for="(item, index) in messages" :key="'m_' + index" :class="(item.from === $store.state.user.profile.uid ? 'mine' : 'not_mine') + ' ' + (item.prevSame ? 'prev_same' : 'prev_not_same') + ' ' + (item.nextSame ? 'next_same' : 'next_not_same')">
 				<img alt="Image" :src="getUser(item.from).photoUrl" class="small-dp">
 				<div class="bubble">{{item.text}}</div>
 			</article>
@@ -71,11 +71,30 @@ export default {
 		observeMessages() {
 			firestore.collection("conversations").orderBy("createdAt").onSnapshot(querySnapshot => {
 				this.messages = [];
-				querySnapshot.forEach(doc => {
-					const event = doc.data();
+				for (let i = 0; i < querySnapshot.docs.length; i++) {
+					const doc = querySnapshot.docs[i];
+					const event = querySnapshot.docs[i].data();
 					if (event.to === "everyone") event.to = this.$store.state.user.profile.uid;
+					if (i > 0) {
+						if (event.from === querySnapshot.docs[i - 1].data().from) {
+							event.prevSame = true;
+						} else {
+							event.prevSame = false;
+						}
+					} else {
+						event.prevSame = false;
+					}
+					if (i < querySnapshot.docs.length - 1) {
+						if (event.from === querySnapshot.docs[i + 1].data().from) {
+							event.nextSame = true;
+						} else {
+							event.nextSame = false;
+						}
+					} else {
+						event.nextSame = false;
+					}
 					this.messages.push({...event, id: doc.id});
-				});
+				}
 				setTimeout(() => {
 					window.scrollTo(0, document.body.scrollHeight);
 				}, 10);
@@ -128,6 +147,21 @@ footer {
 	box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
 	border-radius: 1.5rem;
 	margin-bottom: 1rem;
+}
+.prev_same {
+	margin-top: -0.5rem;
+	&.mine .bubble {
+		border-top-right-radius: 0.5rem;
+	}
+	&.mine.next_not_same .bubble {
+		border-bottom-right-radius: 1.5rem;
+	}
+	&.not_mine .bubble {
+		border-top-left-radius: 0.5rem;
+	}
+	&.not_mine.next_not_same .bubble {
+		border-bottom-left-radius: 1.5rem;
+	}
 }
 .small-dp {
 	width: 2rem;
