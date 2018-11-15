@@ -111,6 +111,18 @@ header {
 main {
 	padding: 4rem 0;
 }
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-device-pixel-ratio: 3) {
+	footer.navbar {
+		padding-bottom: 2.5rem;
+	}
+	main {
+		padding: 6.5rem 0;
+	}
+	header {
+		height: 6rem;
+		padding-top: 2rem;
+	}
+}
 footer.navbar {
 	bottom: 0;
 	justify-content: space-between;
