@@ -1,6 +1,7 @@
 <template>
     <main>
-        {{users}}
+        <b-table :data="users" :columns="columns"></b-table>
+        <!-- {{users}} -->
     </main>
 </template>
 
@@ -11,31 +12,51 @@ import { LOGOUT } from '@/store/user';
 import firestore from '@/services/firestore';
 
 export default {
-  data () {
-      return {
-        users: null
-      }
-  },
-  methods: {
-    observeUsers() {
-      firestore.collection('users').onSnapshot(querySnapshot => {
-        this.users = [];
-        querySnapshot.forEach((doc) => {
-          const user = doc.data();
-          this.users.push({...user, id: doc.id});
-        });
-      });
+ data() {
+        return {
+            users: [],
+            columns: [
+                {
+                    field: 'id',
+                    label: 'ID',
+                },
+                {
+                    field: 'name',
+                    label: 'Name',
+                },
+                {
+                    field: 'creationTime',
+                    label: 'First login',
+                    centered: true
+                },
+                {
+                    field: 'lastSignInTime',
+                    label: 'Last login',
+                    centered: true
+                },
+            ]
+        }
     },
-    async deleteUser(user) {
-      try {
-        await firestore.collection('users').doc(user.id).delete();
-      } catch(error) {
-        alert(error);
-      }
+    methods: {
+        observeUsers() {
+            firestore.collection('users').onSnapshot(querySnapshot => {
+                this.users = [];
+                querySnapshot.forEach((doc) => {
+                const user = doc.data();
+                this.users.push({...user, id: doc.id});
+                });
+            });
+        },
+        async deleteUser(user) {
+            try {
+                await firestore.collection('users').doc(user.id).delete();
+            } catch(error) {
+                alert(error);
+            }
+        }
+    },
+    created () {
+        this.observeUsers();
     }
-  },
-  created () {
-    this.observeUsers();
-  }
 };
 </script>
