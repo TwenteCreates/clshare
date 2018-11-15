@@ -2,6 +2,7 @@
     <main>
         <div class="container is-fluid">
             <engagement-answers-statistics />
+            <sentiment-anlysis-statistics />
             <users-table />
         </div>
     </main>
@@ -20,6 +21,9 @@ export default {
     components: {
         EngagementAnswersStatistics,
         UsersTable,
+        SentimentAnalysisStatistics,
+    },
+    methods() {
     }
 };
 </script>

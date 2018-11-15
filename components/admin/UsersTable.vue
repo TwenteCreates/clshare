@@ -24,10 +24,15 @@ export default {
                     label: 'Name',
                 },
                 {
-                    field: 'creationTime',
-                    label: 'First login',
+                    field: 'sentimentScore',
+                    label: 'Sentiment score',
                     centered: true
                 },
+                // {
+                //     field: 'engagementScore',
+                //     label: 'Engagement score',
+                //     centered: true
+                // },
                 {
                     field: 'lastSignInTime',
                     label: 'Last login',
