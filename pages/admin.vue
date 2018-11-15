@@ -1,7 +1,7 @@
 <template>
     <main>
+        <engagement-answers-statistics />
         <users-table />
-        <engagement-answers-table />
     </main>
 </template>
 
@@ -11,12 +11,12 @@
 import { LOGOUT } from '@/store/user';
 import firestore from '@/services/firestore';
 
-import EngagementAnswersTable from '@/components/admin/EngagementAnswersTable';
+import EngagementAnswersStatistics from '@/components/admin/EngagementAnswersStatistics';
 import UsersTable from '@/components/admin/UsersTable';
 
 export default {
     components: {
-        EngagementAnswersTable,
+        EngagementAnswersStatistics,
         UsersTable,
     }
 };
