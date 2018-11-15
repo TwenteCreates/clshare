@@ -71,35 +71,35 @@ export default {
     computed: {
         getAnswersCountData() {
             return {
-                    labels: this.answers.map(answer => answer.createdAt.toDate().toLocaleDateString()),
-                    datasets: [
-                        {
-                            label: 'Average mood',
-                            backgroundColor: '#f87979',
-                            data: this.answers.map(answer => answer.mood),
-                        }
-                    ]
+                labels: this.answers.map(answer => answer.createdAt.toDate().toLocaleDateString()),
+                datasets: [
+                    {
+                        label: 'Average mood',
+                        backgroundColor: '#f87979',
+                        data: this.answers.map(answer => answer.mood),
+                    }
+                ]
             }
         },
         getDailyAverage() {
             if (!this.answers || !this.answers.length) return 0;
             const currentDay = new Date().getDay();
             const dayData = this.answers.filter(answer => answer.createdAt.toDate().getDay() === currentDay).map(answer => answer.mood);
-            console.log("Day dataset size", dayData.length, dayData);
+            // console.log("Day dataset size", dayData.length, dayData);
             return this.average(dayData).toFixed(2);
         },
         getMonhtlyAverage() {
             if (!this.answers || !this.answers.length) return 0;
             const currentMonth = new Date().getMonth();
             const monthData = this.answers.filter(answer => answer.createdAt.toDate().getMonth() === currentMonth).map(answer => answer.mood);
-            console.log("Month dataset", monthData.length, monthData);
+            // console.log("Month dataset", monthData.length, monthData);
             return this.average(monthData).toFixed(2);
         },
         getYearlyAverage() {
             if (!this.answers || !this.answers.length) return 0;
             const currentYear = new Date().getYear();
             const yearData = this.answers.filter(answer => answer.createdAt.toDate().getYear() === currentYear).map(answer => answer.mood);
-            console.log("Year dataset", yearData.length, yearData);
+            // console.log("Year dataset", yearData.length, yearData);
             return this.average(yearData).toFixed(2);
         },
     },
