@@ -4,7 +4,6 @@
 			<div><img alt="Logo" src="/dark_splash.png"></div>
 			<div><button @click="login">Login with @cls-group.com</button></div>
 		</div>
-		<video src="https://storage.googleapis.com/coverr-main/mp4/Notes.mp4" autoplay muted loop />
 	</main>
 </template>
 
@@ -30,16 +29,6 @@ export default {
 
 
 <style lang="scss" scoped>
-video {
-	position: fixed;
-	filter: hue-rotate(150deg);
-	opacity: 0.5;
-	z-index: 9;
-	right: 0;
-	top: 0; bottom: 0;
-	height: 100vh;
-	max-width: none;
-}
 main {
 	position: fixed;
 	background-color: #1d3176;
@@ -49,14 +38,23 @@ main {
 	z-index: 10;
 	padding: 0;
 	margin: 0 !important;
-	// background-image: url("/loginbg.png");
-	// background-position: bottom center;
-	// background-size: cover;
+	&::before {
+		content: "";
+		position: absolute;
+		z-index: 11;
+		opacity: 0.5;
+		left: 0; right: 0;
+		bottom: 0; top: 0;
+		background-image: url("/vid.gif");
+		filter: hue-rotate(120deg);
+		background-position: bottom center;
+		background-size: cover;
+	}
 	.in {
 		position: absolute;
 		top: 20vh;
 		left: 15%; right: 15%;
-		z-index: 11;
+		z-index: 12;
 	}
 	img {
 		width: 100%;
