@@ -201,6 +201,11 @@ footer {
 	position: fixed;
 	z-index: 6;
 }
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-device-pixel-ratio: 3) {
+	footer {
+		bottom: 6.5rem;
+	}
+}
 .messages {
 	padding: 1rem;
 	padding-bottom: 2rem;

@@ -48,7 +48,7 @@ export default {
 		}
 	},
 	created() {
-		if (!this.$store.state.user.loggedIn) this.$router.push("/login");
+		if (!this.$store.state.user.loggedIn) this.$router.push("/loginui");
 		this.observeMessages();
 	},
 	methods: {
