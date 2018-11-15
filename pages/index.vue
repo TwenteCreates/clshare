@@ -4,19 +4,19 @@
 		<h2>Groups</h2>
 		<ul>
 			<li>
-				<router-link to="/chat/everyone">
+				<router-link to="/chat/everyone?name=Everyone+at+CLS">
 					<img alt="Image" src="https://logo.clearbit.com/cls-group.com" class="small-dp">
 					Everyone at CLS
 				</router-link>
-				<router-link to="/chat/london">
+				<router-link to="/chat/london?name=CLS+in+London">
 					<img alt="Image" src="https://tse2.mm.bing.net/th?q=london&w=100&h=100&p=0&dpr=2&adlt=moderate&c=1" class="small-dp">
 					CLS in London
 				</router-link>
-				<router-link to="/chat/london">
+				<router-link to="/chat/london?name=HR+staff+members">
 					<img alt="Image" src="https://tse2.mm.bing.net/th?q=company+staff&w=100&h=100&p=0&dpr=2&adlt=moderate&c=1" class="small-dp">
 					HR staff members
 				</router-link>
-				<router-link to="/chat/party">
+				<router-link to="/chat/party?name=Party+Planning+Committee">
 					<img alt="Image" src="https://tse2.mm.bing.net/th?q=office+party&w=100&h=100&p=0&dpr=2&adlt=moderate&c=1" class="small-dp">
 					Party Planning Committee
 				</router-link>
@@ -25,7 +25,7 @@
 		<h2>Coworkers</h2>
 		<ul>
 			<li v-if="item.id !== $store.state.user.profile.uid" v-for="(item, index) in users" :key="'u_' + index">
-				<router-link :to="`/chat/${item.id}`">
+				<router-link :to="`/chat/${item.id}?name=${item.name}`">
 					<img alt="Image" :src="item.photoUrl" class="small-dp">
 					{{item.name}}
 				</router-link>

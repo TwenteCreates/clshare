@@ -12,6 +12,14 @@
 					<div class="nav-caption">Moments</div>
 				</div>
 			</nuxt-link>
+			<nuxt-link to="/chat/bot?name=CLS+Bot" class="nav-element">
+				<div class="nav-item">
+					<div class="nav-icon">
+						<b-icon pack="fas" icon="robot" />
+					</div>
+					<div class="nav-caption">CLS Bot</div>
+				</div>
+			</nuxt-link>
 			<nuxt-link to="/explore" class="nav-element">
 				<div class="nav-item">
 					<div class="nav-icon">
@@ -28,14 +36,6 @@
 					<div class="nav-caption">Access</div>
 				</div>
 			</a>
-			<nuxt-link to="/profile" class="nav-element">
-				<div class="nav-item">
-					<div class="nav-icon">
-						<b-icon pack="fas" icon="user" />
-					</div>
-					<div class="nav-caption">Profile</div>
-				</div>
-			</nuxt-link>
 		</footer>
 	</div>
 </template>
@@ -153,5 +153,14 @@ footer.navbar {
 }
 .fade-enter, .fade-leave-to {
 	opacity: 0;
+}
+.empty-state {
+	padding: 20vh 0;
+	text-align: center;
+	font-size: 125%;
+	h2 {
+		font-size: 150%;
+		font-weight: 300;
+	}
 }
 </style>
