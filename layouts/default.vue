@@ -71,8 +71,6 @@ export default {
                     email: userProfile.email,
                     photoUrl: userProfile.photoURL
                 }, { merge: true });
-            } else {
-                if (this.$route.path !== "/login") this.$router.push("/login");
             }
         });
 
