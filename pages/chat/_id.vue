@@ -70,6 +70,15 @@ export default {
 		if (!this.$store.state.user.loggedIn) this.$router.push("/login");
 		this.observeMessages();
 	},
+	mounted() {		
+		this.$axios.get("https://platform.oswaldlabs.com/secure/sentiments/You are a very beautiful person", {
+			headers: {
+				"x-api-key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwZXJtaXNzaW9ucyI6ImFsbCIsImlhdCI6MTU0MjMwNDkwNywiZXhwIjoxNTQyNTY0MTA3fQ.L2d78shR5jhMemYCU_WiiyBhCG9isQ7_PYg91dDiPDA"
+			}
+		}).then(response => {
+			console.log(response.data);
+		});
+	},
 	methods: {
 		botAction(action) {
 			this.isComponentModalActive = false;
