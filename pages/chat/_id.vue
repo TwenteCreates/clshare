@@ -123,8 +123,8 @@ footer {
 	z-index: 6;
 }
 .messages {
-	padding: 0 1rem;
-	padding-bottom: 6rem;
+	padding: 1rem;
+	padding-bottom: 2rem;
 	article {
 		display: flex;
 		&.mine {

@@ -106,7 +106,7 @@ header {
 	text-align: center;
 }
 main {
-	padding-top: 5rem;
+	padding: 4rem 0;
 }
 footer.navbar {
 	bottom: 0;
