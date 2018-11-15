@@ -5,11 +5,14 @@
 			<article v-for="(item, index) in messages" :key="'m_' + index" :class="item.from === $store.state.user.profile.uid ? 'mine' : 'not_mine'">
 				<div class="bubble">{{item.text}}</div>
 			</article>
+			<div v-if="typing !== 'nobody' && typing !== $store.state.user.profile.uid">
+				{{typing}} is typing...
+			</div>
 		</section>
 		<footer>
 			<form @submit.prevent="send">
 				<b-field>
-					<b-input expanded v-model="text" size="is-medium" placeholder="Type your message..." icon="message" />
+					<b-input @input="setTyping" expanded v-model="text" size="is-medium" placeholder="Type your message..." icon="message" />
 					<p class="control">
 						<button type="submit" class="button is-medium">Send</button>
 					</p>
@@ -26,7 +29,8 @@ export default {
 	data() {
 		return {
 			text: "",
-			messages: []
+			messages: [],
+			typing: "nobody"
 		}
 	},
 	created() {
@@ -34,6 +38,11 @@ export default {
 		this.observeMessages();
 	},
 	methods: {
+		setTyping() {
+			firestore.collection("metadata").doc("metadata").set({
+				typing: this.$store.state.user.profile.uid
+			});
+		},
 		send() {
 			if (!this.text || !this.text.trim()) return;
 			firestore.collection("conversations").add({
@@ -44,6 +53,11 @@ export default {
 				text: this.text
 			});
 			this.text = "";
+			setTimeout(() => {
+				firestore.collection("metadata").doc("metadata").set({
+					typing: "nobody"
+				});
+			}, 10);
 		},
 		observeMessages() {
 			firestore.collection("conversations").orderBy("createdAt").onSnapshot(querySnapshot => {
@@ -55,6 +69,9 @@ export default {
 				setTimeout(() => {
 					window.scrollTo(0, document.body.scrollHeight);
 				}, 10);
+			});
+			firestore.collection("metadata").onSnapshot(querySnapshot => {
+				this.typing = querySnapshot.docs[0].data().typing;
 			});
 		}
 	}
