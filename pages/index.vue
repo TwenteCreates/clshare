@@ -51,12 +51,14 @@ export default {
 					const event = doc.data();
 					this.messages.push({...event, id: doc.id});
 				});
+				setTimeout(() => {
+					window.scrollTo(0, document.body.scrollHeight);
+				}, 10);
 			});
 		}
 	}
 }
 </script>
-
 
 <style lang="scss" scoped>
 footer {
@@ -68,6 +70,7 @@ footer {
 }
 .messages {
 	padding: 0 1rem;
+	padding-bottom: 6rem;
 	article {
 		display: flex;
 		&.mine {
