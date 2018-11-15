@@ -3,7 +3,8 @@
 		<header>Moments</header>
 		<section class="messages">
 			<article v-for="(item, index) in messages" :key="'m_' + index" :class="item.from === $store.state.user.profile.uid ? 'mine' : 'not_mine'">
-				<div class="bubble">{{getUser(item.from).name}}: {{item.text}}</div>
+				<img alt="Image" :src="getUser(item.from).photoUrl" class="small-dp">
+				<div class="bubble">{{item.text}}</div>
 			</article>
 			<div v-if="typing !== 'nobody' && typing !== $store.state.user.profile.uid">
 				{{getUser(typing).name}} is typing...
@@ -127,5 +128,15 @@ footer {
 	box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
 	border-radius: 1.5rem;
 	margin-bottom: 1rem;
+}
+.small-dp {
+	width: 2rem;
+	height: 2rem;
+	border-radius: 100%;
+	margin-right: 0.75rem;
+	margin-top: 1rem;
+}
+.mine .small-dp {
+	display: none;
 }
 </style>
