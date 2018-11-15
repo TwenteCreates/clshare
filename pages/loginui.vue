@@ -18,6 +18,9 @@ export default {
 			password: "",
 		}
 	},
+	mounted() {
+		if (window.innerWidth > 1000) this.$router.push("/login");
+	},
 	methods: {
 		login() {
 			if (this.$store.state.user.loggedIn) this.$router.push("/");
@@ -47,7 +50,7 @@ main {
 		bottom: 0; top: 0;
 		background-image: url("/vid.gif");
 		filter: hue-rotate(120deg);
-		background-position: bottom center;
+		background-position: bottom right;
 		background-size: cover;
 	}
 	.in {
