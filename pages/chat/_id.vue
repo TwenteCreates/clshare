@@ -163,6 +163,9 @@ footer {
 		border-bottom-left-radius: 1.5rem;
 	}
 }
+.perv_same .small-dp {
+	opacity: 0;
+}
 .small-dp {
 	width: 2rem;
 	height: 2rem;
