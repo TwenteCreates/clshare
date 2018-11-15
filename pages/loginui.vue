@@ -18,9 +18,6 @@ export default {
 			password: "",
 		}
 	},
-	mounted() {
-		if (window.innerWidth > 1000) this.$router.push("/login");
-	},
 	methods: {
 		login() {
 			if (this.$store.state.user.loggedIn) this.$router.push("/");

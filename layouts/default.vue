@@ -62,7 +62,8 @@ export default {
         firebase.auth().onAuthStateChanged(userProfile => {
             if (userProfile) {
 				this.$store.commit(LOGIN_SUCCESS, userProfile);
-                if (this.$route.path === "/login") this.$router.push("/");
+                if (this.$route.path === "/login" || this.$route.path === "/loginui") this.$router.push("/");
+
                 firestore.collection('users').doc(userProfile.uid).set({
                     createdAt: new Date(),
                     updatedAt: new Date(),
@@ -73,7 +74,7 @@ export default {
                     photoUrl: userProfile.photoURL
                 }, { merge: true });
 
-                this.askForPermissioToReceiveNotifications()
+                this.askForPermissioToReceiveNotifications();
             }
         });
 	},
@@ -87,9 +88,16 @@ export default {
                 await messaging.requestPermission();
                 const token = await messaging.getToken();
                 console.log('Notifications token', token);
+                if (token) this.saveMessagingToken(token);
             } catch (error) {
-                console.error(error);
+                console.log(error);
             }
+        },
+        saveMessagingToken(token) {
+            if (!this.$store.state.user.loggedIn) return;
+            firestore.collection('users').doc(this.$store.state.user.profile.uid).set({
+                messagingToken: token
+            }, { merge: true });
         }
     },
     computed: {
