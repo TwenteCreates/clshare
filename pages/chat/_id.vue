@@ -163,7 +163,7 @@ footer {
 		border-bottom-left-radius: 1.5rem;
 	}
 }
-.perv_same .small-dp {
+.prev_same .small-dp {
 	opacity: 0;
 }
 .small-dp {
