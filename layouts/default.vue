@@ -1,37 +1,39 @@
 <template>
 	<div class="body">
-		<nuxt class="content" />
+		<transition name="fade">
+			<nuxt class="content" />
+		</transition>
 		<footer class="navbar">
-			<nuxt-link to="/">
+			<nuxt-link to="/" class="nav-element">
 				<div class="nav-item">
 					<div class="nav-icon">
-						<b-icon pack="fas" icon="user" />
+						<b-icon pack="fas" icon="comments" />
 					</div>
-					<div class="nav-caption">Caption</div>
+					<div class="nav-caption">Moments</div>
 				</div>
 			</nuxt-link>
-			<nuxt-link to="/about">
+			<nuxt-link to="/explore" class="nav-element">
 				<div class="nav-item">
 					<div class="nav-icon">
-						<b-icon pack="fas" icon="user" />
+						<b-icon pack="fas" icon="compass" />
 					</div>
-					<div class="nav-caption">Caption</div>
+					<div class="nav-caption">Explore</div>
 				</div>
 			</nuxt-link>
-			<nuxt-link to="/about">
+			<button class="nav-element">
 				<div class="nav-item">
 					<div class="nav-icon">
-						<b-icon pack="fas" icon="user" />
+						<b-icon pack="fas" icon="universal-access" />
 					</div>
-					<div class="nav-caption">Caption</div>
+					<div class="nav-caption">Access</div>
 				</div>
-			</nuxt-link>
-			<nuxt-link to="/about">
+			</button>
+			<nuxt-link to="/profile" class="nav-element">
 				<div class="nav-item">
 					<div class="nav-icon">
 						<b-icon pack="fas" icon="user" />
 					</div>
-					<div class="nav-caption">Caption</div>
+					<div class="nav-caption">Profile</div>
 				</div>
 			</nuxt-link>
 		</footer>
@@ -51,14 +53,16 @@
 	overflow-x: hidden;
 }
 footer.navbar {
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.025);
 	position: fixed;
 	background-color: #fff;
+	z-index: 5;
 	bottom: 0;
 	left: 0; right: 0;
 	justify-content: space-between;
 	align-items: stretch;
 	display: flex;
-	a {
+	.nav-element {
 		color: inherit;
 		appearance: none;
 		background: transparent;
@@ -78,11 +82,17 @@ footer.navbar {
 			margin: 0.15rem auto;
 		}
 		&.nuxt-link-exact-active {
-			color: #000;
-			&.nav-icon {
-				transform: scale(1.5);
+			color: #2980b9;
+			.nav-icon {
+				transform: scale(1.2);
 			}
 		}
 	}
+}
+.fade-enter-active, .fade-leave-active {
+	transition: opacity 0.2s;
+}
+.fade-enter, .fade-leave-to {
+	opacity: 0;
 }
 </style>
