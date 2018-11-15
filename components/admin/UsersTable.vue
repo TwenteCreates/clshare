@@ -14,8 +14,8 @@ export default {
             users: [],
             columns: [
                 {
-                    field: 'id',
-                    label: 'ID',
+                    field: 'email',
+                    label: 'Email',
                 },
                 {
                     field: 'name',
