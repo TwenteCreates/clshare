@@ -75,9 +75,6 @@ export default {
 				for (let i = 0; i < querySnapshot.docs.length; i++) {
 					const doc = querySnapshot.docs[i];
 					const event = querySnapshot.docs[i].data();
-					if (["everyone", "london", "hr", "party"].includes(this.$route.params.id)) {
-						event.to = this.$store.state.user.profile.uid
-					}
 					if (i > 0) {
 						if (event.from === querySnapshot.docs[i - 1].data().from) {
 							event.prevSame = true;
@@ -96,10 +93,13 @@ export default {
 					} else {
 						event.nextSame = false;
 					}
-					if (this.from === this.$store.state.user.profile.uid || this.to === this.$store.state.user.profile.uid) {
-						this.messages.push({...event, id: doc.id});
+					if (["everyone", "london", "hr", "party"].includes(this.$route.params.id)) {
+						if (this.$route.params.id === event.to) this.messages.push({...event, id: doc.id});
 					} else {
-						if (["everyone", "london", "hr", "party"].includes(this.$route.params.id)) {
+						if (
+							(this.$store.state.user.profile.uid === event.from && this.$route.params.id === event.to) ||
+							(this.$store.state.user.profile.uid === event.to && this.$route.params.id === event.from)
+						) {
 							this.messages.push({...event, id: doc.id});
 						}
 					}
