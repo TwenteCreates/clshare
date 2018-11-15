@@ -1,13 +1,14 @@
 <template>
-    <div>
-        <button @click="refreshSentimentAnalysis">Refresh sentiment analysis</button>
-        <sentiment-analyses-chart :sentimentAnalysesChartData="getSentimentAnalysesChartData" />
+    <div class="tile is-ancestor">
+        <div class="tile is-parent">
+            <div class="tile is-child box">
+                <p class="title">Average sentiment score in conversations</p>
+                <button @click="refreshSentimentAnalysis">Refresh sentiment analysis</button>
+                <sentiment-analyses-chart :sentimentAnalysesChartData="getSentimentAnalysesChartData" />
+            </div>
+        </div>
     </div>
 </template>
-
-<style lang="scss" scoped>
-</style>
-
 
 <script>
 import firestore from '@/services/firestore';
@@ -30,7 +31,7 @@ export default {
                 datasets: [
                     {
                         label: 'Average sentiment score in conversation',
-                        backgroundColor: '#f87979',
+                        backgroundColor: '#2581c3',
                         data: this.analyses.map(analysis => analysis.sentimentScore),
                     }
                 ]

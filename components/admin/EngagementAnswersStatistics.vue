@@ -1,25 +1,23 @@
 <template>
-    <div>
-        <button @click="addRandomMood">Add random mood</button>
-        <engagement-answers-count-chart :answersCountChartData="getAnswersCountData"/>
-        <div class="mood-averages tile is-ancestor">
-            <div class="tile is-parent">
-                <article class="tile is-child box">
-                <p class="title">Daily mood average</p>
+    <div class="tile is-ancestor">
+        <div class="tile is-4 is-vertical is-parent">
+            <div class="tile is-child box">
+                <p class="title">Daily</p>
+                <p>Based on {{getDayDataSize}} submissions</p>
                 <p class="subtitle">{{getDailyAverage}}</p>
-                </article>
             </div>
-            <div class="tile is-parent">
-                <article class="tile is-child box">
-                <p class="title">Monthly mood average</p>
+
+            <div class="tile is-child box">
+                <p class="title">Monthly</p>
+                <p>Based on {{getMonthDataSize}} submissions</p>
                 <p class="subtitle">{{getMonhtlyAverage}}</p>
-                </article>
             </div>
-            <div class="tile is-parent">
-                <article class="tile is-child box">
-                <p class="title">Yearly mood average</p>
-                <p class="subtitle">{{getYearlyAverage}}</p>
-                </article>
+        </div>
+        <div class="tile is-parent">
+            <div class="tile is-child box">
+                <p class="title">Average mood</p>
+                <button @click="addRandomMood">Add random mood</button>
+                <engagement-answers-count-chart :answersCountChartData="getAnswersCountData"/>
             </div>
         </div>
     </div>
@@ -66,7 +64,17 @@ export default {
         },
         average(arr) {
             return arr.reduce((a, v) => a + v, 0 ) / arr.length;
-        }
+        },
+        getDayData() {
+            if (!this.answers || !this.answers.length) return 0;
+            const currentDay = new Date().getDay();
+            return this.answers.filter(answer => answer.createdAt.toDate().getDay() === currentDay).map(answer => answer.mood);
+        },
+        getMonthData() {
+            if (!this.answers || !this.answers.length) return 0;
+            const currentMonth = new Date().getMonth();
+            return this.answers.filter(answer => answer.createdAt.toDate().getMonth() === currentMonth).map(answer => answer.mood);
+        },
     },
     computed: {
         getAnswersCountData() {
@@ -75,32 +83,27 @@ export default {
                 datasets: [
                     {
                         label: 'Average mood',
-                        backgroundColor: '#f87979',
+                        backgroundColor: '#0065b4',
                         data: this.answers.map(answer => answer.mood),
                     }
                 ]
             }
         },
+        getDayDataSize() {
+            return this.getDayData().length;
+        },
+        getMonthDataSize() {
+            return this.getMonthData().length;
+        },
         getDailyAverage() {
-            if (!this.answers || !this.answers.length) return 0;
-            const currentDay = new Date().getDay();
-            const dayData = this.answers.filter(answer => answer.createdAt.toDate().getDay() === currentDay).map(answer => answer.mood);
-            // console.log("Day dataset size", dayData.length, dayData);
+            const dayData = this.getDayData();
+            if (!dayData.length) return;
             return this.average(dayData).toFixed(2);
         },
         getMonhtlyAverage() {
-            if (!this.answers || !this.answers.length) return 0;
-            const currentMonth = new Date().getMonth();
-            const monthData = this.answers.filter(answer => answer.createdAt.toDate().getMonth() === currentMonth).map(answer => answer.mood);
-            // console.log("Month dataset", monthData.length, monthData);
+            const monthData = this.getMonthData();
+            if (!monthData.length) return;
             return this.average(monthData).toFixed(2);
-        },
-        getYearlyAverage() {
-            if (!this.answers || !this.answers.length) return 0;
-            const currentYear = new Date().getYear();
-            const yearData = this.answers.filter(answer => answer.createdAt.toDate().getYear() === currentYear).map(answer => answer.mood);
-            // console.log("Year dataset", yearData.length, yearData);
-            return this.average(yearData).toFixed(2);
         },
     },
     created () {
