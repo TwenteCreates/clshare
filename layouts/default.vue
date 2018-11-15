@@ -3,7 +3,7 @@
 		<transition name="fade">
 			<nuxt class="content" />
 		</transition>
-		<footer class="navbar">
+		<footer v-if="shouldShowNavbar" class="navbar">
 			<nuxt-link to="/" class="nav-element">
 				<div class="nav-item">
 					<div class="nav-icon">
@@ -81,7 +81,12 @@ export default {
 		a11y() {
 			window.agastya.frame.open();
 		}
-	}
+    },
+    computed: {
+        shouldShowNavbar() {
+            return !['/login'].includes(this.$route.path);
+        }
+    }
 }
 </script>
 
