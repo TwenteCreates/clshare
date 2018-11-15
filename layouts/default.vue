@@ -20,7 +20,7 @@
 					<div class="nav-caption">Explore</div>
 				</div>
 			</nuxt-link>
-			<button class="nav-element">
+			<button type="button" class="nav-element" @click.prevent="a11y">
 				<div class="nav-item">
 					<div class="nav-icon">
 						<b-icon pack="fas" icon="universal-access" />
@@ -39,6 +39,27 @@
 		</footer>
 	</div>
 </template>
+
+<script>
+import loadJs from "loadjs";
+export default {
+	mounted() {
+		window.a11ySettings = window.a11ySettings || {};
+		window.a11ySettings.display = "none";
+		loadJs("https://agastya-loader.oswaldlabs.com/hackathon.js", () => {
+			setTimeout(() => {
+				window.agastya.api();
+			}, 1000);
+		});
+	},
+	methods: {
+		a11y() {
+			window.agastya.frame.open();
+		}
+	}
+}
+</script>
+
 
 <style lang="scss">
 @import url("https://use.fontawesome.com/releases/v5.5.0/css/all.css");
