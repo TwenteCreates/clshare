@@ -43,6 +43,7 @@
 <script>
 import firebase from "@/services/firebase";
 import firestore from "@/services/firestore";
+import "@/services/registerServiceWorker";
 
 import loadJs from "loadjs";
 
@@ -71,14 +72,25 @@ export default {
                     email: userProfile.email,
                     photoUrl: userProfile.photoURL
                 }, { merge: true });
+
+                this.askForPermissioToReceiveNotifications()
             }
         });
-
 	},
 	methods: {
 		a11y() {
 			window.agastya.frame.open();
-		}
+        },
+        async askForPermissioToReceiveNotifications() {
+            try {
+                const messaging = firebase.messaging();
+                await messaging.requestPermission();
+                const token = await messaging.getToken();
+                console.log('Notifications token', token);
+            } catch (error) {
+                console.error(error);
+            }
+        }
     },
     computed: {
         shouldShowNavbar() {

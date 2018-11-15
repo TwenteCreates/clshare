@@ -1,11 +1,9 @@
 <template>
-    <main>
+    <div class="box">
         <b-table :data="users" :columns="columns"></b-table>
-    </main>
-
+    </div>
 </template>
 
-<style></style>
 
 <script>
 import firestore from '@/services/firestore';

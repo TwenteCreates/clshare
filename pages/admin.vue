@@ -8,8 +8,6 @@
     </main>
 </template>
 
-<style></style>
-
 <script>
 import { LOGOUT } from '@/store/user';
 import firestore from '@/services/firestore';

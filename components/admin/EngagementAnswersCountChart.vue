@@ -1,14 +1,6 @@
 <template>
-  <div class="answers-count-chart">
     <line-chart :chart-data="answersCountChartData" :options="options"></line-chart>
-  </div>
 </template>
-
-<style lang="scss" scoped>
-.answers-count-chart {
-    position: relative;
-}
-</style>
 
 
 <script>
@@ -21,6 +13,9 @@
     data () {
         return {
             options: {
+                legend: {
+                    display: false
+                },
                 responsive: true,
                 maintainAspectRatio: false
             }
