@@ -4,13 +4,19 @@
             <div class="tile is-child box">
                 <p class="title">Daily</p>
                 <p>Based on {{getDayDataSize}} submissions</p>
-                <p class="subtitle">{{getDailyAverage}}</p>
+                <p class="subtitle">Average score: {{getDailyAverage}}</p>
             </div>
 
             <div class="tile is-child box">
                 <p class="title">Monthly</p>
                 <p>Based on {{getMonthDataSize}} submissions</p>
-                <p class="subtitle">{{getMonhtlyAverage}}</p>
+                <p class="subtitle">Average score: {{getMonthlyAverage}}</p>
+            </div>
+
+            <div class="tile is-child box">
+                <p class="title">Yearly</p>
+                <p>Based on {{getYearDataSize}} submissions</p>
+                <p class="subtitle">Average score: {{getYearlyAverage}}</p>
             </div>
         </div>
         <div class="tile is-parent">
@@ -79,6 +85,11 @@ export default {
             const currentMonth = new Date().getMonth();
             return this.answers.filter(answer => answer.createdAt.toDate().getMonth() === currentMonth).map(answer => answer.mood);
         },
+        getYearData() {
+            if (!this.answers || !this.answers.length) return 0;
+            const currentYear = new Date().getYear();
+            return this.answers.filter(answer => answer.createdAt.toDate().getYear() === currentYear).map(answer => answer.mood);
+        },
     },
     computed: {
         getAnswersCountData() {
@@ -99,15 +110,23 @@ export default {
         getMonthDataSize() {
             return this.getMonthData().length;
         },
+        getYearDataSize() {
+            return this.getYearData().length;
+        },
         getDailyAverage() {
             const dayData = this.getDayData();
             if (!dayData.length) return;
             return this.average(dayData).toFixed(2);
         },
-        getMonhtlyAverage() {
+        getMonthlyAverage() {
             const monthData = this.getMonthData();
             if (!monthData.length) return;
             return this.average(monthData).toFixed(2);
+        },
+        getYearlyAverage() {
+            const yearData = this.getYearData();
+            if (!yearData.length) return;
+            return this.average(yearData).toFixed(2);
         },
     },
     created () {
