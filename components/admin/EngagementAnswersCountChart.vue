@@ -1,5 +1,5 @@
 <template>
-    <line-chart :chart-data="answersCountChartData" :options="options"></line-chart>
+    <line-chart style="max-height: 500px" :chart-data="answersCountChartData" :options="options"></line-chart>
 </template>
 
 
@@ -13,6 +13,11 @@
     data () {
         return {
             options: {
+                scales:{
+                xAxes: [{
+                        display: false //this will remove all the x-axis grid lines
+                    }]
+                },
                 legend: {
                     display: false
                 },

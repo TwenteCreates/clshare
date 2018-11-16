@@ -22,7 +22,7 @@
         <div class="tile is-parent">
             <div class="tile is-child box">
                 <p class="title">Average employees mood
-                    <button class="button add-button" @click="addRandomMood"><b-icon pack="fas" icon="plus"/></button>
+                    <!-- <button class="button add-button" @click="addRandomMood"><b-icon pack="fas" icon="plus"/></button> -->
                 </p>
                 <engagement-answers-count-chart :answersCountChartData="getAnswersCountData"/>
             </div>

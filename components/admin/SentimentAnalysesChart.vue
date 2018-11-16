@@ -1,5 +1,5 @@
 <template>
-    <line-chart :chart-data="sentimentAnalysesChartData" :options="options"></line-chart>
+    <line-chart style="max-height: 300px" :chart-data="sentimentAnalysesChartData" :options="options"></line-chart>
 </template>
 
 <script>
@@ -12,6 +12,11 @@
     data () {
         return {
             options: {
+                scales:{
+                xAxes: [{
+                        display: false //this will remove all the x-axis grid lines
+                    }]
+                },
                 legend: {
                     display: false
                 },
