@@ -110,17 +110,20 @@ export default {
 				})
 				this.firstDone = true;
 				this.typing = true;
-				// Do dialogflow stuff
-				setTimeout(() => {
+				this.$axios.get("https://api.dialogflow.com/v1/query?v=20150910&lang=en&sessionId=24978328e&query=" + encodeURIComponent(text), {
+					headers: {
+						Authorization: "Bearer 5008c94ea2954924818204e3791ba416"
+					}
+				}).then(response => {
 					this.typing = false;
 					this.chat.push({
-						text: "This is a response to your question",
+						text: response.data.result.fulfillment.messages[0].speech,
 						from: "bot"
 					});
 					setTimeout(() => {
 						window.scrollTo(0, document.body.scrollHeight);
 					}, 5);
-				}, 2000);
+				});
 			} else {
 				if (text !== input && input.case) {
 					this.current = input.case;
