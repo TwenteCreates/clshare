@@ -61,8 +61,11 @@ export default {
 
         firebase.auth().onAuthStateChanged(userProfile => {
             if (userProfile) {
-				this.$store.commit(LOGIN_SUCCESS, userProfile);
-                if (this.$route.path === "/login" || this.$route.path === "/loginui") this.$router.push("/");
+                this.$store.commit(LOGIN_SUCCESS, userProfile);
+
+                if (this.$route.path === "/login" || this.$route.path === "/loginui") {
+                    this.$router.push("/");
+                }
 
                 firestore.collection('users').doc(userProfile.uid).set({
                     createdAt: new Date(),
@@ -98,6 +101,10 @@ export default {
             firestore.collection('users').doc(this.$store.state.user.profile.uid).set({
                 messagingToken: token
             }, { merge: true });
+
+            firestore.collection('users').doc(this.$store.state.user.profile.uid).get().then(user =>
+                alert(JSON.stringify(user.data()))
+            );
         }
     },
     computed: {
