@@ -140,7 +140,7 @@ export default {
 				for (let i = 0; i < querySnapshot.docs.length; i++) {
 					const doc = querySnapshot.docs[i];
 					const event = querySnapshot.docs[i].data();
-					if (["everyone", "london", "hr", "party"].includes(this.$route.params.id)) {
+					if (["everyone", "london", "hr", "party", "pokemon", "yoga", "running", "reading"].includes(this.$route.params.id)) {
 						if (this.$route.params.id === event.to) messages.push({...event, id: doc.id});
 					} else {
 						if (
