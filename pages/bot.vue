@@ -241,14 +241,7 @@ footer .message_user {
 	bottom: 4rem;
 	left: 0; right: 0;
 }
-@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-device-pixel-ratio: 3) {
-	.responses {
-		bottom: 6.5rem;
-	}
-main {
-	padding-bottom: 10.5rem;
-}
-}
+
 @keyframes pulse {
 	0% { transform: scale(1.05) }
 	50% { transform: scale(1) }
@@ -256,7 +249,7 @@ main {
 }
 .pulse {
 	animation: pulse 3s ease-out;
-	animation-iteration-count: infinite; 
+	animation-iteration-count: infinite;
 	opacity: 1;
 }
 .responses .text {
