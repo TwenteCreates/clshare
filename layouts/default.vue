@@ -142,7 +142,7 @@ h2 {
 	font-weight: 700 !important;
 }
 #agastyabutton {
-	opacity: 0.1 !important;
+	opacity: 0 !important;
 }
 main {
 	padding: 4rem 0;
