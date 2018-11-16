@@ -14,7 +14,7 @@
 			<p v-if="chat.length === 1" class="subtitle is-5 pulse">Click on a response to reply to CLS Bot:</p>
 			<div class="message_user" :key="'r_' + index" v-for="(item, index) in responses">
 				<form @submit.prevent="respond(newMessage, item.modal)" v-if="item && item.type">
-					<div style="margin-bottom: 1rem; font-weight: bold">
+					<div v-if="item.placeholder" style="margin-bottom: 1rem; font-weight: bold">
 						{{item.placeholder}}:
 					</div>
 					<b-field grouped>
@@ -50,7 +50,8 @@ export default {
 			responses: [],
 			time: 100,
 			chat: [],
-			current: 0
+			current: 0,
+			firstDone: false
 		}
 	},
 	mounted() {
@@ -102,25 +103,48 @@ export default {
 		},
 		respond(input, modal) {
 			let text = typeof input === "string" ? input : input.text;
-			if (text !== input && input.case) {
-				this.current = input.case;
+			if (this.isDone) {
+				this.chat.push({
+					text,
+					from: "user"
+				})
+				this.firstDone = true;
+				this.typing = true;
+				// Do dialogflow stuff
+				setTimeout(() => {
+					this.typing = false;
+					this.chat.push({
+						text: "This is a response to your question",
+						from: "bot"
+					});
+					setTimeout(() => {
+						window.scrollTo(0, document.body.scrollHeight);
+					}, 5);
+				}, 2000);
 			} else {
-				this.current++;
-			}
-			if (input.redirect) {
-				return this.$router.push(input.redirect);
-			}
-			this.chat.push({
-				text,
-				from: "user"
-			})
-			this.typing = true;
-			this.responses = [];
-			if (modal === "finished") {
-				this.isDone = true;
-			} else {
+				if (text !== input && input.case) {
+					this.current = input.case;
+				} else {
+					this.current++;
+				}
+				if (input.redirect) {
+					return this.$router.push(input.redirect);
+				}
+				this.chat.push({
+					text,
+					from: "user"
+				})
+				this.typing = true;
+				this.responses = [];
+				if (modal === "finished") {
+					this.isDone = true;
+				}
 				this.think();
 			}
+			this.newMessage = "";
+			setTimeout(() => {
+				window.scrollTo(0, document.body.scrollHeight);
+			}, 5);
 		},
 		think() {
 			switch (this.current) {
@@ -135,9 +159,23 @@ export default {
 					}]);
 					break;
 				case 3:
-					this.say(["Thanks for the input", "Have a nice day!"], [{
+					this.say(["Thanks for the input", "Have a nice day!", "Anything else I can help you with?"], [{
 						text: "I have a question",
 						modal: "finished"
+					}]);
+					break;
+				case 4:
+					this.say([this.firstDone ? "Have another question?" : "What's the question?"], [{
+						type: "input",
+						placeholder: "",
+						modal: "question"
+					}]);
+					break;
+				case 5:
+					this.say(["Do you have another question?"], [{
+						type: "input",
+						placeholder: "",
+						modal: "question"
 					}]);
 					break;
 			}
@@ -177,7 +215,7 @@ img.icon {
 	border-bottom-left-radius: 0.5rem;
 }
 main {
-	padding-bottom: 8rem;
+	padding-bottom: 9rem;
 }
 .message_user {
 	display: flex;
