@@ -117,6 +117,8 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700");
 body {
 	font-family: "Lato";
+	max-width: 720px;
+	margin: auto;
 }
 html, body {
 	background-color: #dfe6e9;
