@@ -5,8 +5,7 @@
             <engagement-answers-statistics />
             <users-table />
 
-            <button class="button" @click="sendPushNotification">Push</button>
-            <b-input v-model="pushUserId" />
+            <button class="button" @click="sendPushNotification">Send event notification</button>
         </div>
     </main>
 </template>
@@ -34,29 +33,29 @@ export default {
         sendPushNotification() {
             const serverKey = "AAAAYwIC9JQ:APA91bHFhwHiXtWjvpqQOBC8o8p38uVdXHPUeol6GkE_T-HZt7MokkH_sQrfUudH2PFxznd1z_uvObrEmDHS_CNeo6ma17QLk2wKuqCkW71KSaXVVWGlYIToyQwH2oysPyYTHxTT_ddh";
 
-            firestore.collection('users').doc(this.pushUserId).get().then(user => {
-                const toToken = user.data().messagingToken;
-                if (!toToken) return;
-
-                var notificationData = {
-                    notification: {
-                        title: "CLSHARE",
-                        body: "You got a new message!",
-                        click_action: "http://localhost:3000/",
-                        icon: "https://cls-innovation.surge.sh/icon.png"
-                    },
-                    to: toToken
-                }
-                this.$axios.post('https://fcm.googleapis.com/fcm/send', notificationData, {
-                        headers: {
-                            "Content-Type": 'application/json',
-                            "Authorization": `key=${serverKey}`
+            firestore.collection('users').get().then(users => {
+                users.forEach(user => {
+                    const toToken = user.data().messagingToken;
+                    if (toToken) {
+                        var notificationData = {
+                            notification: {
+                                title: "CLSHARE",
+                                body: "There is a new event for you!",
+                                click_action: "https://cls-innovation.surge.sh/explore",
+                                icon: "https://cls-innovation.surge.sh/icon.png"
+                            },
+                            to: toToken
                         }
-                });
+                        this.$axios.post('https://fcm.googleapis.com/fcm/send', notificationData, {
+                                headers: {
+                                    "Content-Type": 'application/json',
+                                    "Authorization": `key=${serverKey}`
+                                }
+                        });
+                    }
+                })
             });
-
         },
-
     }
 };
 </script>
