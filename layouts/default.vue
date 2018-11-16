@@ -101,10 +101,6 @@ export default {
             firestore.collection('users').doc(this.$store.state.user.profile.uid).set({
                 messagingToken: token
             }, { merge: true });
-
-            firestore.collection('users').doc(this.$store.state.user.profile.uid).get().then(user =>
-                alert(JSON.stringify(user.data()))
-            );
         }
     },
     computed: {
