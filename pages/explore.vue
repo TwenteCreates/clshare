@@ -28,39 +28,55 @@
 			<h2>Coworkers</h2>
 			<ul class="groups people">
 				<li>
-					<img alt="" src="https://randomuser.me/api/portraits/men/32.jpg">
-					Steven
+					<router-link to="/chat/steven?name=Steven+Paul">
+						<img alt="" src="https://randomuser.me/api/portraits/men/32.jpg">
+						Steven
+					</router-link>
 				</li>
 				<li>
-					<img alt="" src="https://randomuser.me/api/portraits/women/32.jpg">
-					Liz
+					<router-link to="/chat/liz?name=Liz+McQueen">
+						<img alt="" src="https://randomuser.me/api/portraits/women/32.jpg">
+						Liz
+					</router-link>
 				</li>
 				<li>
-					<img alt="" src="https://randomuser.me/api/portraits/women/2.jpg">
-					Laura
+					<router-link to="/chat/laura?name=Laura+Smith">
+						<img alt="" src="https://randomuser.me/api/portraits/women/2.jpg">
+						Laura
+					</router-link>
 				</li>
 				<li>
-					<img alt="" src="https://randomuser.me/api/portraits/men/3.jpg">
-					Brad
+					<router-link to="/chat/brad?name=Brad+Brown">
+						<img alt="" src="https://randomuser.me/api/portraits/men/3.jpg">
+						Brad
+					</router-link>
 				</li>
 			</ul>
 			<h2>Interests</h2>
 			<ul class="groups people">
 				<li>
-					<img alt="" src="https://tse2.mm.bing.net/th?q=yoga+woman&w=100&h=100&p=0&dpr=2&adlt=moderate&c=1">
-					Yoga
+					<router-link to="/chat/yoga?name=Yoga">
+						<img alt="" src="https://tse2.mm.bing.net/th?q=yoga+woman&w=100&h=100&p=0&dpr=2&adlt=moderate&c=1">
+						Yoga
+					</router-link>
 				</li>
 				<li>
-					<img alt="" src="https://tse2.mm.bing.net/th?q=jogging&w=100&h=100&p=0&dpr=2&adlt=moderate&c=1">
-					Running
+					<router-link to="/chat/running?name=Running">
+						<img alt="" src="https://tse2.mm.bing.net/th?q=jogging&w=100&h=100&p=0&dpr=2&adlt=moderate&c=1">
+						Running
+					</router-link>
 				</li>
 				<li>
-					<img alt="" src="https://tse2.mm.bing.net/th?q=pokemon+show&w=100&h=100&p=0&dpr=2&adlt=moderate&c=1">
-					Pokémon
+					<router-link to="/chat/pokemon?name=Pokémon">
+						<img alt="" src="https://tse2.mm.bing.net/th?q=pokemon+show&w=100&h=100&p=0&dpr=2&adlt=moderate&c=1">
+						Pokémon
+					</router-link>
 				</li>
 				<li>
-					<img alt="" src="https://tse2.mm.bing.net/th?q=reading&w=100&h=100&p=0&dpr=2&adlt=moderate&c=1">
-					Reading
+					<router-link to="/chat/reading?name=Reading">
+						<img alt="" src="https://tse2.mm.bing.net/th?q=reading&w=100&h=100&p=0&dpr=2&adlt=moderate&c=1">
+						Reading
+					</router-link>
 				</li>
 			</ul>
 			<h2>Feed</h2>
@@ -95,6 +111,11 @@ h2 {
 	flex: 0 0 25%;
     max-width: 25%;
 	padding: 0 0.75rem !important;
+	a {
+		box-shadow: none;
+		border: none;
+		background-color: transparent;
+	}
 	img {
 		border-radius: 100%;
 	}
