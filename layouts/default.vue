@@ -132,6 +132,12 @@ header {
 	line-height: 4rem;
 	text-align: center;
 }
+h2 {
+	font-size: 95% !important;
+	text-transform: uppercase;
+	margin-bottom: 1rem;
+	font-weight: 700 !important;
+}
 main {
 	padding: 4rem 0;
 }
@@ -201,5 +207,62 @@ footer.navbar {
 		font-size: 150%;
 		font-weight: 300;
 	}
+}
+.groups {
+	display: flex;
+	flex-wrap: wrap;
+	li {
+		display: block;
+		flex: 0 0 50%;
+    	max-width: 50%;
+		padding: 0 1rem;
+		&:nth-child(2n) {
+			padding-left: 0.5rem;
+		}
+		&:nth-child(2n - 1) {
+			padding-right: 0.5rem;
+		}
+	}
+	a {
+		display: block;
+		width: 100%;
+		box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.1);
+		border-radius: 0.25rem;
+		overflow: hidden;
+		margin-bottom: 1rem;
+		img {
+			border-radius: 0;
+			margin-left: 0;
+			display: block;
+			width: 100%;
+			padding: 0;
+			height: auto;
+		}
+		div {
+			padding: 1rem;
+		}
+	}
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    .groups {
+        li {
+            flex: 0 0 25%;
+        }
+    }
+}
+ul {
+	margin: 0 !important;
+	padding: 0 !important;
+	list-style: none !important;
+}
+li {
+	margin-top: 0 !important;
+}
+li a {
+	display: block;
+	background-color: #fff;
+	color: inherit;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 </style>
