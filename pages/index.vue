@@ -73,7 +73,11 @@ export default {
 
 
 <style lang="scss" scoped>
+h2 {
+	padding-left: 1rem;
+}
 .small-dp {
+	width: 4rem;
 	height: 4rem;
 	padding: 0.5rem;
 	border-radius: 100%;

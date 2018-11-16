@@ -52,7 +52,7 @@ import { LOGIN_SUCCESS } from '@/store/user';
 export default {
 	mounted() {
 		window.a11ySettings = window.a11ySettings || {};
-		window.a11ySettings.display = "none";
+		// window.a11ySettings.display = "none";
 		loadJs("https://agastya-loader.oswaldlabs.com/hackathon.js", () => {
 			setTimeout(() => {
 				window.agastya.api();
@@ -137,6 +137,9 @@ h2 {
 	text-transform: uppercase;
 	margin-bottom: 1rem;
 	font-weight: 700 !important;
+}
+#agastyabutton {
+	opacity: 0.1 !important;
 }
 main {
 	padding: 4rem 0;

@@ -46,6 +46,7 @@ export default {
 		return {
 			newMessage: "",
 			typing: false,
+			isDone: false,
 			responses: [],
 			time: 100,
 			chat: [],
@@ -115,7 +116,11 @@ export default {
 			})
 			this.typing = true;
 			this.responses = [];
-			this.think();
+			if (modal === "finished") {
+				this.isDone = true;
+			} else {
+				this.think();
+			}
 		},
 		think() {
 			switch (this.current) {
@@ -130,9 +135,9 @@ export default {
 					}]);
 					break;
 				case 3:
-					this.say(["Thanks for the input, have a nice day!"], [{
-						text: "Go to your Moments",
-						redirect: "/"
+					this.say(["Thanks for the input", "Have a nice day!"], [{
+						text: "I have a question",
+						modal: "finished"
 					}]);
 					break;
 			}
