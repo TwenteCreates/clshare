@@ -74,12 +74,12 @@ module.exports = {
   },
   env: {
       firebaseConfig: {
-          apiKey: "AIzaSyBKw4Or-zv1OC-K60Ym6jQmMq9vB6Tb1N0",
-          authDomain: "cls-innovation-app.firebaseapp.com",
-          databaseURL: "https://cls-innovation-app.firebaseio.com",
-          projectId: "cls-innovation-app",
-          storageBucket: "cls-innovation-app.appspot.com",
-          messagingSenderId: "425235510420"
+          apiKey: "REPLACE_WITH_YOUR_FIREBASE_DETAILS",
+          authDomain: "REPLACE_WITH_YOUR_FIREBASE_DETAILS",
+          databaseURL: "REPLACE_WITH_YOUR_FIREBASE_DETAILS",
+          projectId: "REPLACE_WITH_YOUR_FIREBASE_DETAILS",
+          storageBucket: "REPLACE_WITH_YOUR_FIREBASE_DETAILS",
+          messagingSenderId: "REPLACE_WITH_YOUR_FIREBASE_DETAILS"
       },
   }
 }
