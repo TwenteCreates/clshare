@@ -1,22 +1,39 @@
-# cls-innovation
+![CLShare](/clshare-logo.png)
 
-> Hackathon project for #CLSInnovation London
+CLShare is an employee engagement and connection app built at the CLS hackathon in London. People can discover shared interestes with their coworkers, find events to attend, and answer anonymous work-related questions.
 
-## Build Setup
+**🥇 Award**: Overall winner with a £10,000 award
 
-``` bash
-# install dependencies
-$ yarn install
+[**Read case study →**](https://anandchowdhary.com/projects/clshare)
 
-# serve with hot reload at localhost:3000
-$ yarn run dev
+## 💻 Demo
 
-# build for production and launch server
-$ yarn run build
-$ yarn start
+![CLShare screenshot](/clshare-screenshot.png)
 
-# generate static project
-$ yarn run generate
+The demo was last updated in 2018, so some APIs might not be online anymore. [View live demo →](https://cls-innovation.surge.sh)
+
+## 🛠️ Development
+
+To build the app, first install dependencies:
+
+```
+npm install
 ```
 
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
+Run the frontend on http://localhost:3000:
+
+```
+npm run dev
+```
+
+Surge.sh is used to deploy the frontend to https://cls-innovation.surge.sh, built using:
+
+```
+npm run generate
+```
+
+## 📄 License
+
+- Code: [MIT](/LICENSE)
+- Logo and assets: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+
