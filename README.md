@@ -32,6 +32,10 @@ Surge.sh is used to deploy the frontend to https://cls-innovation.surge.sh, buil
 npm run generate
 ```
 
+## 👥 Contributors
+
+[![Profile pictures of contributors on GitHub](https://services.anandchowdhary.now.sh/api/github-contributors?repo=c-r-e-a-t-e/clshare)](https://github.com/c-r-e-a-t-e/clshare/graphs/contributors)
+
 ## 📄 License
 
 - Code: [MIT](/LICENSE)
