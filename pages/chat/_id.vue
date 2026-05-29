@@ -26,7 +26,7 @@
 		</section>
 		<section v-else class="messages">
 			<article v-if="item.text !== 'bot__meta:START' && item.text !== 'bot__meta:STOP'" v-for="(item, index) in messages" :key="'m_' + index" :class="((item.from === $store.state.user.profile.uid && !item.from_bot) ? 'mine' : 'not_mine') + ' ' + (item.prevSame ? 'prev_same' : 'prev_not_same') + ' ' + (item.nextSame ? 'next_same' : 'next_not_same')">
-				<img v-if="item.from_bot" alt="Image" src="https://logo.clearbit.com/cls-group.com" class="small-dp">
+				<img v-if="item.from_bot" alt="Image" src="https://www.google.com/s2/favicons?sz=128&domain=cls-group.com" class="small-dp">
 				<img v-else alt="Image" :src="getUser(item.from).photoUrl" class="small-dp">
 				<div class="bubble">{{item.text}}</div>
 			</article>
